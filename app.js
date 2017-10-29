@@ -1,21 +1,3 @@
-// normal function statement
-//
-// function sayHi() {
-//   console.log("hi");
-// }
-//
-// sayHi();
-//
-// // function expression
-//
-var sayBye = function() {
-  console.log("bye");
-};
+var counter = require("./count");
 
-// sayBye();
-
-function callFunction(fun) {
-  fun();
-}
-
-callFunction(sayBye);
+console.log(counter([1, 2, 3, 4, 5]));
