@@ -1,7 +1,33 @@
-let math = require("./math");
+let events = require('events');
 
-console.log(math.counter([1, 2, 3, 4, 5]));
+// example 1
+// let myEmitter = new events.EventEmitter();
+// myEmitter.on("someEvent", message => console.log(message));
+// myEmitter.emit("someEvent", "the event was emitted");
 
-console.log(math.adder(5, 6));
+let util = require('util');
 
-console.log(math.pi);
+let Person = function(name) {
+  this.name = name;
+};
+
+util.inherits(Person, events.EventEmitter);
+
+let james = new Person('james');
+let mary = new Person('mary');
+let ryan = new Person('ryan');
+let people = [james, mary, ryan];
+
+// people.forEach(person) => {
+//   person.on('speak', (message) => {
+//     console.log(person.name + ' said: ' + message);
+//   });
+// };
+
+people.forEach(person => {
+  person.on('speak', message => {
+    console.log(person.name + ' said: ' + message);
+  });
+});
+
+james.emit('speak', 'hello there');
